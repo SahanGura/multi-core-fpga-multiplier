@@ -566,6 +566,19 @@ module control_unit
 	 next_stage <= FETCH1;
 	 end_op <= 1'b0;	
 	end		
+
+	6'd22: //SUBRx
+	begin
+	 write_en <= 17'b00000000001000000 ; //ac
+	 inc <= 2'b00;
+	 bus_ld <= 5'd16;//rx
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 alu_mode <= 3'd1; //sub
+	 next_stage <= FETCH1;
+	 end_op <= 1'b0;	
+	end		
 	
 	6'd23: //CLRR
 	begin
@@ -684,6 +697,32 @@ module control_unit
 		 end_op <= 1'b0;
 		end
 	end
+
+	6'd45: //INTDIVRx
+	begin 
+	 write_en <= 17'b00000000001000000 ; //ac
+	 inc <= 2'b00;
+	 bus_ld <= 5'd16;//rx
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 alu_mode <= 3'd3; //div
+	 next_stage <= FETCH1;
+	 end_op <= 1'b0;
+	end	
+
+	6'd46: //MODRx
+	begin 
+	 write_en <= 17'b00000000001000000 ; //ac
+	 inc <= 2'b00;
+	 bus_ld <= 5'd16;//rx
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 alu_mode <= 3'd5; //div
+	 next_stage <= FETCH1;
+	 end_op <= 1'b0;
+	end	
 	
 	6'd28: //ENDOP
 	begin
