@@ -567,7 +567,7 @@ module control_unit
 	 end_op <= 1'b0;	
 	end		
 
-	6'd22: //SUBRx
+	6'd44: //SUBRx
 	begin
 	 write_en <= 17'b00000000001000000 ; //ac
 	 inc <= 2'b00;

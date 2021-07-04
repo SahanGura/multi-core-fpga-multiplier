@@ -1,18 +1,18 @@
 module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	(input wire clk,
-	input wire we,
+	input wire [3:0] we,
 	input wire[(2*DATA_WIDTH-1):0] w_data1, w_data2, w_data3, w_data4,
 	input wire[(ADDR_WIDTH-1):0] w_addr1, r_addr1, w_addr2, r_addr2, w_addr3, r_addr3, w_addr4, r_addr4,
 	output wire[(DATA_WIDTH-1):0] r_data1, r_data2, r_data3, r_data4);
 
 	//signal declaration
 	reg[DATA_WIDTH-1:0] mem [2**ADDR_WIDTH-1:0]; //2D-array for storage
-	reg[DATA_WIDTH-1:0] data_reg; //read output register
+	reg[DATA_WIDTH-1:0] data_reg1, data_reg2, data_reg3, data_reg4; //read output register
 
 	//RAM initialization from an output file
     initial begin
         $display("Loading rom.");
-        $readmemh("initial_files/data_mem.txt", mem);
+        $readmemh("../simulation/modelsim/initial_files/data_mem.txt", mem);
     end
 
 	// initial begin
@@ -57,17 +57,56 @@ module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	//write operation
 	always@(posedge clk)
 		begin
-			if(we)
+			if(we[0])
 				begin
-				mem[w_addr] <= w_data[7:0];
-				mem[w_addr+1'b1] <= w_data[15:8];
+				mem[w_addr1] <= w_data1[7:0];
+				mem[w_addr1+1'b1] <= w_data1[15:8];
 				end
-			else if(!we)
+			else if(!we[0])
 				begin
-				data_reg <= mem[r_addr];
+				data_reg1 <= mem[r_addr1];
+				end
+			else if(we[1])
+				begin
+				mem[w_addr1] <= w_data1[7:0];
+				mem[w_addr1+1'b1] <= w_data1[15:8];
+				end
+			else if(!we[1])
+				begin
+				data_reg1 <= mem[r_addr1];
+				end
+			else if(we[1])
+				begin
+				mem[w_addr2] <= w_data2[7:0];
+				mem[w_addr2+1'b1] <= w_data2[15:8];
+				end
+			else if(!we[1])
+				begin
+				data_reg2 <= mem[r_addr2];
+				end
+			else if(we[2])
+				begin
+				mem[w_addr3] <= w_data3[7:0];
+				mem[w_addr3+1'b1] <= w_data3[15:8];
+				end
+			else if(!we[2])
+				begin
+				data_reg3 <= mem[r_addr3];
+				end
+			else if(we[3])
+				begin
+				mem[w_addr4] <= w_data4[7:0];
+				mem[w_addr4+1'b1] <= w_data4[15:8];
+				end
+			else if(!we[3])
+				begin
+				data_reg4 <= mem[r_addr4];
 				end
 		end
 		
 		//read operation
-		assign r_data = data_reg;
+		assign r_data1 = data_reg1;
+		assign r_data2 = data_reg2;
+		assign r_data3 = data_reg3;
+		assign r_data4 = data_reg4;
 endmodule

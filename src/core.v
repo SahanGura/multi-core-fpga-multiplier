@@ -11,7 +11,7 @@ output reg [15:0] to_mem
 
 wire [16:0] we;
 wire [5:0] clr;
-wire [3:0] bus_ld;
+wire [4:0] bus_ld;
 wire [2:0] alu_mode;
 wire [1:0] inc;
 wire [15:0] bus_out;
@@ -83,7 +83,7 @@ register_inc r(
 .clk (clk),
 .we (we[8]),
 .clr(clr[3]),
-.inc(0),
+.inc(1'b0),
 .data_in(bus_out[15:0]),
 .data_out(r_out)
 );
@@ -92,7 +92,7 @@ register_inc r1(
 .clk (clk),
 .we (we[5]),
 .clr(clr[5]),
-.inc(0),
+.inc(1'b0),
 .data_in(bus_out[15:0]),
 .data_out(r1_out)
 );
@@ -101,7 +101,7 @@ register_inc r2(
 .clk (clk),
 .we (we[4]),
 .clr(clr[4]),
-.inc(0),
+.inc(1'b0),
 .data_in(bus_out[15:0]),
 .data_out(r2_out)
 );
@@ -160,7 +160,7 @@ register_inc #(.data_width(16)) tr
 .clk (clk),
 .we (we[7]),
 .clr(clr[1]),
-.inc(0),
+.inc(1'b0),
 .data_in(bus_out[15:0]),
 .data_out(tr_out)
 );

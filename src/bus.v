@@ -25,23 +25,23 @@ module bus(input [4:0] read_en,
  always @( *)
 	begin
 	 case(read_en)
-	 4'd0: busout <= im ;
-	 4'd1: busout <= dm + 8'd0 ;
-	 4'd2: busout <= pc;
-	 4'd3: busout <= dr;
-	 4'd4: busout <= r;
-	 4'd5: busout <= ac;
-	 4'd6: busout <= tr;
-	 4'd7: busout <= r1;
-	 4'd8: busout <= r2;
-	 4'd9: busout <= ri;
-	 4'd10: busout <= rj;
-	 4'd11: busout <= rk;
-	 4'd12:busout <= r3;
-	 4'd13:busout <= ra;
-	 4'd14:busout <= rb;
-	 4'd15:busout <= rc;
-	 4'd16:busout <= rx;
+	 5'd0: busout <= im ;
+	 5'd1: busout <= dm + 8'd0 ;
+	 5'd2: busout <= pc;
+	 5'd3: busout <= dr;
+	 5'd4: busout <= r;
+	 5'd5: busout <= ac;
+	 5'd6: busout <= tr;
+	 5'd7: busout <= r1;
+	 5'd8: busout <= r2;
+	 5'd9: busout <= ri;
+	 5'd10: busout <= rj;
+	 5'd11: busout <= rk;
+	 5'd12:busout <= r3;
+	 5'd13:busout <= ra;
+	 5'd14:busout <= rb;
+	 5'd15:busout <= rc;
+	 5'd16:busout <= rx;
 	 default: busout <= 8'd0;
 	 endcase
 	end

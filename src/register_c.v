@@ -1,6 +1,6 @@
 module register_c#(parameter data_width = 8)
 (input clk,
-input reg [data_width-1:0] data_in, 
+input [data_width-1:0] data_in, 
 output reg[data_width-1:0] data_out);
 
 // initial begin 
