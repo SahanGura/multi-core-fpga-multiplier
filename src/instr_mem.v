@@ -53,7 +53,14 @@ module instr_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	parameter MVACRb = 8'd37;
 	parameter CLRR1 = 8'd38;
 	parameter CLRR2 = 8'd39;
-	parameter NOP = 8'd40;
+	parameter LADACRc = 8'd40;
+	parameter LADACRx = 8'd41;
+	parameter ADDRx = 8'd42;
+	parameter MVACRx = 8'd43;
+	parameter SUBRx = 8'd44;
+	parameter INTDIVRx = 8'd45;
+	parameter MODRx = 8'd46;
+	parameter NOP = 8'd47;
 	
 	
 	// //Instructions	increment

@@ -90,8 +90,8 @@ instr_mem instr_mem1(
 .we(im_we),
 .w_instr(mem_in1),
 .r_instr(im_out),
-.w_addr(addr_out_im),
-.r_addr(addr_out_im)
+.w_addr(addr_out_im1),
+.r_addr(addr_out_im1)
 );
 
 always @ (posedge clk)
