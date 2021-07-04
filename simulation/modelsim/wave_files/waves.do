@@ -1,7 +1,6 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /processor_tb/clk
-add wave -noupdate /processor_tb/to_mem
 add wave -noupdate /processor_tb/dut/core1/bus/ac
 add wave -noupdate /processor_tb/dut/core1/bus/busout
 add wave -noupdate /processor_tb/dut/core1/bus/dm
@@ -33,10 +32,6 @@ add wave -noupdate /processor_tb/dut/core1/cu/next_stage
 add wave -noupdate /processor_tb/dut/core1/cu/prev_stage
 add wave -noupdate /processor_tb/dut/core1/cu/write_en
 add wave -noupdate /processor_tb/dut/core1/cu/z
-add wave -noupdate /processor_tb/dut/data_mem1/r_addr
-add wave -noupdate /processor_tb/dut/data_mem1/r_data
-add wave -noupdate /processor_tb/dut/data_mem1/w_addr
-add wave -noupdate /processor_tb/dut/data_mem1/w_data
 add wave -noupdate /processor_tb/dut/data_mem1/we
 add wave -noupdate {/processor_tb/dut/data_mem1/mem[150]}
 add wave -noupdate /processor_tb/dut/core1/dr/data_in
@@ -67,6 +62,8 @@ add wave -noupdate /processor_tb/dut/core1/r2/data_out
 add wave -noupdate /processor_tb/dut/core1/r3/data_out
 add wave -noupdate /processor_tb/dut/core1/rj/data_out
 add wave -noupdate /processor_tb/dut/core1/rk/data_out
+add wave -noupdate /processor_tb/dut/core1/rx/data_out
+add wave -noupdate /processor_tb/dut/core1/rc/data_out
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {4971048 ps} 0}
 quietly wave cursor active 1
@@ -84,4 +81,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {4881142 ps} {5701538 ps}
+WaveRestoreZoom {0 ps} {820396 ps}

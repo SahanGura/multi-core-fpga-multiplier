@@ -2,7 +2,7 @@ module core
 (input [7:0] dm_in,
 input [7:0] im_in,
 input clk,
-input [4:0] core_id,
+input [7:0] core_id,
 output [15:0] addr_dm, addr_im,
 output dm_wr,
 output im_wr,

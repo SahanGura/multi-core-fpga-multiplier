@@ -10,11 +10,10 @@ wire [7:0] addr_out_im1, addr_out_im2, addr_out_im3, addr_out_im4, addr_out_dm1,
 wire [15:0] mem_in1, mem_in2, mem_in3, mem_in4;
 wire [3:0] dm_we, im_we;
 
-reg [7:0] core_id1 = 5'd0;
-reg [7:0] core_id2 = 5'd1;
-reg [7:0] core_id3 = 5'd2;
-reg [7:0] core_id4 = 5'd3;
-
+reg [7:0] core_id1 = 8'd0;
+reg [7:0] core_id2 = 8'd1;
+reg [7:0] core_id3 = 8'd2;
+reg [7:0] core_id4 = 8'd3;
 
 core core1(
 .dm_in(dm_out1),
@@ -82,7 +81,7 @@ data_mem data_mem1(
 .r_addr1(addr_out_dm1),
 .r_addr2(addr_out_dm2),
 .r_addr3(addr_out_dm3),
-.r_addr4(addr_out_dm4),
+.r_addr4(addr_out_dm4)
 );
 
 instr_mem instr_mem1(

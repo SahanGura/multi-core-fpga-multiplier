@@ -51,6 +51,7 @@ module control_unit
  write_en <= 17'b00001000000000000 ; //ar
  inc <= 2'b00;
  dm_addr <=1'b0;
+ alu_mode <= 3'd4; //pass
  clr <= 6'b000000;
  dm_wr <=1'b0;
  im_wr <=1'b0;
@@ -719,7 +720,7 @@ module control_unit
 	 clr <= 6'b000000;
 	 dm_wr <=1'b0;
 	 im_wr <=1'b0;
-	 alu_mode <= 3'd5; //div
+	 alu_mode <= 3'd5; //mod
 	 next_stage <= FETCH1;
 	 end_op <= 1'b0;
 	end	

@@ -53,8 +53,8 @@ module instr_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	parameter MVACRb = 8'd37;
 	parameter CLRR1 = 8'd38;
 	parameter CLRR2 = 8'd39;
-	parameter LADACRc = 8'd40;
-	parameter LADACRx = 8'd41;
+	parameter LDACRc = 8'd40;
+	parameter LDACRx = 8'd41;
 	parameter ADDRx = 8'd42;
 	parameter MVACRx = 8'd43;
 	parameter SUBRx = 8'd44;
@@ -175,114 +175,245 @@ module instr_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	
 	
 	// Instruction set to be executed
+	// initial begin
+	// mem[0] = LDACI;
+	// mem[1] = 8'd0;
+	// mem[2] = MVAC;
+	// mem[3] = LDACI;
+	// mem[4] = 8'd2;
+	// mem[5] = MULT;
+	// mem[6] = MVACR3;
+	// mem[7] = LDACI;	//loop1
+	// mem[8] = 8'd6;
+	// mem[9] = MVACRi;
+	// mem[10] = LDACI;
+	// mem[11] = 8'd2;
+	// mem[12] = MULTRi;
+	// mem[13] = MVACRa;
+	// mem[14] = CLRAC;
+	// mem[15] = STACI;
+	// mem[16] = 8'd8;
+	// mem[17] = LDACI;	//loop2
+	// mem[18] = 8'd8;
+	// mem[19] = MVACRj;
+	// mem[20] = LDACI;
+	// mem[21] = 8'd2;
+	// mem[22] = MULTRj;
+	// mem[23] = MVACRb;
+	// mem[24] = CLRAC;
+	// mem[25] = STACI;
+	// mem[26] = 8'd10;
+	// mem[27] = LDACRa;	//loop3
+	// mem[28] = MVACR1;	
+	// mem[29] = LDACRb;	
+	// mem[30] = MVACR2;	
+	// mem[31] = LDACI;
+	// mem[32] = 8'd10;
+	// mem[33] = MVACRk;
+	// mem[34] = ADDR1;
+	// mem[35] = LDACRk;
+	// mem[36] = ADDR2;
+	// mem[37] = LDACI;
+	// mem[38] = 8'd12;
+	// mem[39] = ADDR1;
+	// mem[40] = LDARR1;
+	// mem[41] = LDAC;
+	// mem[42] = MVAC;	
+	// mem[43] = LDACI;
+	// mem[44] = 8'd12;
+	// mem[45] = ADDR2;
+	// mem[46] = LDACR3;
+	// mem[47] = ADDR2;
+	// mem[48] = LDARR2;
+	// mem[49] = LDAC;
+	// mem[50] = MULT;
+	// mem[51] = ADDTR;
+	// mem[52] = LDACRk;	
+	// mem[53] = INAC;
+	// mem[54] = MVACRk;
+	// mem[55] = STACI;
+	// mem[56] = 8'd10;
+	// mem[57] = LDACI;
+	// mem[58] = 8'd2;
+	// mem[59] = CLRR;
+	// mem[60] = SUBRk;
+	// mem[61] = JPNZ;	
+	// mem[62] = 8'd27; //loop3 ends here
+	// mem[63] = LDACRj;
+	// mem[64] = MVACR1;
+	// mem[65] = LDACI;
+	// mem[66] = 8'd14;
+	// mem[67] = ADDR1;
+	// mem[68] = LDACRi;
+	// mem[69] = MVAC;
+	// mem[70] = LDACI;
+	// mem[71] = 8'd4;	
+	// mem[72] = MULT;
+	// mem[73] = ADDR1;
+	// mem[74] = ADDR1;
+	// mem[75] = LDARR1;
+	// mem[76] = STTR;
+	// mem[77] = CLRTR;
+	// mem[78] = LDACRj;
+	// mem[79] = INAC;
+	// mem[80] = MVACRj;
+	// mem[81] = STACI;
+	// mem[82] = 8'd8;
+	// mem[83] = LDACI;	
+	// mem[84] = 8'd4;
+	// mem[85] = CLRR;
+	// mem[86] = SUBRj;
+	// mem[87] = JPNZ;
+	// mem[88] = 8'd17; //loop2 ends here
+	// mem[89] = LDACI;
+	// mem[90] = 8'd6;
+	// mem[91] = INAC;
+	// mem[92] = MVACRi;
+	// mem[93] = STACI;
+	// mem[94] = 8'd6;	
+	// mem[95] = LDACI;
+	// mem[96] = 8'd0;
+	// mem[97] = CLRR;
+	// mem[98] = SUBRi;
+	// mem[99] = JPNZ;
+	// mem[100] = 8'd7; //loop1 ends here
+	// mem[101] = ENDOP;
+		
+	// end
+		
+		
+	// MultiCore Instruction set to be executed
 	initial begin
 	mem[0] = LDACI;
-	mem[1] = 8'd0;
+	mem[1] = 8'd0; //m
 	mem[2] = MVAC;
 	mem[3] = LDACI;
-	mem[4] = 8'd2;
+	mem[4] = 8'd1; //n
 	mem[5] = MULT;
 	mem[6] = MVACR3;
-	mem[7] = LDACI;	//loop1
-	mem[8] = 8'd6;
+	mem[7] = LDACI;	//calculate x	loopq
+	mem[8] = 8'd3;	//N
 	mem[9] = MVACRi;
 	mem[10] = LDACI;
-	mem[11] = 8'd2;
+	mem[11] = 8'd4; //q
 	mem[12] = MULTRi;
-	mem[13] = MVACRa;
-	mem[14] = CLRAC;
-	mem[15] = STACI;
-	mem[16] = 8'd8;
-	mem[17] = LDACI;	//loop2
-	mem[18] = 8'd8;
-	mem[19] = MVACRj;
+
+	mem[13] = MVACRx;
+	mem[14] = LDACRc;
+	mem[15] = ADDRx;
+
+	mem[16] = LDACI;	//calculate i
+	mem[17] = 8'd2;	//l
+	mem[18] = INTDIVRx;
+	mem[19] = MVACRi;
 	mem[20] = LDACI;
-	mem[21] = 8'd2;
-	mem[22] = MULTRj;
-	mem[23] = MVACRb;
-	mem[24] = CLRAC;
-	mem[25] = STACI;
-	mem[26] = 8'd10;
-	mem[27] = LDACRa;	//loop3
-	mem[28] = MVACR1;	
-	mem[29] = LDACRb;	
-	mem[30] = MVACR2;	
-	mem[31] = LDACI;
-	mem[32] = 8'd10;
-	mem[33] = MVACRk;
-	mem[34] = ADDR1;
-	mem[35] = LDACRk;
-	mem[36] = ADDR2;
-	mem[37] = LDACI;
-	mem[38] = 8'd12;
-	mem[39] = ADDR1;
-	mem[40] = LDARR1;
-	mem[41] = LDAC;
-	mem[42] = MVAC;	
-	mem[43] = LDACI;
-	mem[44] = 8'd12;
-	mem[45] = ADDR2;
-	mem[46] = LDACR3;
-	mem[47] = ADDR2;
-	mem[48] = LDARR2;
+	mem[21] = 8'd1;	//	n
+	mem[22] = MULTRi;
+	mem[23] = MVACRa;
+	
+	mem[24] = LDACI;	//calculate j
+	mem[25] = 8'd2;	//l
+	mem[26] = MODRx;
+	mem[27] = MVACRj;
+	mem[28] = LDACI;
+	mem[29] = 8'd1;	//	n
+	mem[30] = MULTRj;
+	mem[31] = MVACRb;
+
+	mem[32] = CLRAC;
+	mem[33] = STACI;
+	mem[34] = 8'd6;	//k
+
+	mem[35] = LDACRa;	//loop3
+	mem[36] = MVACR1;	
+	mem[37] = LDACRb;	
+	mem[38] = MVACR2;	
+	mem[39] = LDACI;
+	mem[40] = 8'd6; //k
+	mem[41] = MVACRk;
+	mem[42] = ADDR1;
+	mem[43] = LDACRk;
+	mem[44] = ADDR2;
+	mem[45] = LDACI;
+	mem[46] = 8'd8; //val1 loc
+	mem[47] = ADDR1;
+	mem[48] = LDARR1;
 	mem[49] = LDAC;
-	mem[50] = MULT;
-	mem[51] = ADDTR;
-	mem[52] = LDACRk;	
-	mem[53] = INAC;
-	mem[54] = MVACRk;
-	mem[55] = STACI;
-	mem[56] = 8'd10;
-	mem[57] = LDACI;
-	mem[58] = 8'd2;
-	mem[59] = CLRR;
-	mem[60] = SUBRk;
-	mem[61] = JPNZ;	
-	mem[62] = 8'd27; //loop3 ends here
-	mem[63] = LDACRj;
-	mem[64] = MVACR1;
+	mem[50] = MVAC;	
+	mem[51] = LDACI;
+	mem[52] = 8'd8; //val1 loc
+	mem[53] = ADDR2;
+	mem[54] = LDACR3;
+	mem[55] = ADDR2;
+	mem[56] = LDARR2;
+	mem[57] = LDAC;
+	mem[58] = MULT;
+	mem[59] = ADDTR;
+	mem[60] = LDACRk;	
+	mem[61] = INAC;
+	mem[62] = MVACRk;
+	mem[63] = STACI;
+	mem[64] = 8'd6; //k
 	mem[65] = LDACI;
-	mem[66] = 8'd14;
-	mem[67] = ADDR1;
-	mem[68] = LDACRi;
-	mem[69] = MVAC;
-	mem[70] = LDACI;
-	mem[71] = 8'd4;	
-	mem[72] = MULT;
-	mem[73] = ADDR1;
-	mem[74] = ADDR1;
-	mem[75] = LDARR1;
-	mem[76] = STTR;
-	mem[77] = CLRTR;
-	mem[78] = LDACRj;
-	mem[79] = INAC;
-	mem[80] = MVACRj;
-	mem[81] = STACI;
-	mem[82] = 8'd8;
-	mem[83] = LDACI;	
-	mem[84] = 8'd4;
-	mem[85] = CLRR;
-	mem[86] = SUBRj;
-	mem[87] = JPNZ;
-	mem[88] = 8'd17; //loop2 ends here
-	mem[89] = LDACI;
-	mem[90] = 8'd6;
-	mem[91] = INAC;
-	mem[92] = MVACRi;
-	mem[93] = STACI;
-	mem[94] = 8'd6;	
-	mem[95] = LDACI;
-	mem[96] = 8'd0;
-	mem[97] = CLRR;
-	mem[98] = SUBRi;
-	mem[99] = JPNZ;
-	mem[100] = 8'd7; //loop1 ends here
-	mem[101] = ENDOP;
+	mem[66] = 8'd1; //n
+	mem[67] = CLRR;
+	mem[68] = SUBRk;
+	mem[69] = JPNZ;	
+	mem[70] = 8'd35; //loop3 ends here				//SHOULD CHANGE THIS
+	mem[71] = LDACRj;
+	mem[72] = MVACR1;
+	mem[73] = LDACI;
+	mem[74] = 8'd9; // st val1 loc
+	mem[75] = ADDR1;
+	mem[76] = LDACRi;
+	mem[77] = MVAC;
+	mem[78] = LDACI;
+	mem[79] = 8'd2;	//l
+	mem[80] = MULT;
+	mem[81] = ADDR1;
+	mem[82] = ADDR1;
+	mem[83] = LDARR1;
+	mem[84] = STTR;
+	mem[85] = CLRTR;
+
+	mem[86] = LDACI;
+	mem[87] = 8'd4; //q
+	mem[88] = INAC;
+	mem[89] = STACI;
+	mem[90] = 8'd4; //q
+	mem[91] = LDACI; //q
+	mem[92] = 8'd3; //q
+	mem[93] = ADDRx; //q
+	mem[94] = LDACI;	
+	mem[95] = 8'd0; //m
+	mem[96] = MVAC;
+	mem[97] = LDACI;
+	mem[98] = 8'd2; //l
+	mem[99] = MULT; 
+	mem[100] = SUBRx;
+	mem[101] = JPNZ;
+	mem[102] = 8'd7; // loop q			//should change this
+
+	mem[103] = ENDOP;
 		
 	end
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//body
 	//write operation
 	always@(posedge clk)
