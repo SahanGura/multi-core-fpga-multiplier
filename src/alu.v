@@ -22,8 +22,9 @@ module alu(input [15:0] in1,
             //         end
             //     end
             3'd2: alu_out    <= in1 * in2;
-            3'd3: alu_out    <= in1 / in2;
+            3'd3: alu_out    <= in2 / in1;
             3'd4: alu_out    <= in2;
+            3'd5: alu_out    <= in2 % in1;
             default: alu_out <= in1 + in2;
         endcase
         
