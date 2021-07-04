@@ -214,6 +214,19 @@ module control_unit
 	 next_stage <= EXECX;
 	 end_op <= 1'b0;
 	end
+
+	6'd40:
+	begin //LDACRc
+	 write_en <= 16'b0000000001000000 ; //ac
+	 inc <= 2'b00;
+	 bus_ld <= 4'd15;//rc
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 alu_mode <= 3'd4; //pass
+	 next_stage <= EXECX;
+	 end_op <= 1'b0;
+	end
 	
 	6'd2: 
 	begin //LDARR1
@@ -805,6 +818,19 @@ begin
 	 end_op <= 1'b0;
 	end
 
+	6'd35:
+	begin //LDACRc
+	 write_en <= 16'b0000000001000000 ; //ac
+	 inc <= 2'b00;
+	 bus_ld <= 4'd15;//rc
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 alu_mode <= 3'd4; //pass
+	 next_stage <= FETCH1;
+	 end_op <= 1'b0;
+	end
+	
 	default : //NOOP
 	begin
 		write_en <= 16'b0000000000000000 ; //nothing
