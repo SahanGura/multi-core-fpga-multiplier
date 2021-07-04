@@ -9,7 +9,7 @@ output im_wr,
 output reg [15:0] to_mem
 );
 
-wire [15:0] we;
+wire [16:0] we;
 wire [5:0] clr;
 wire [3:0] bus_ld;
 wire [2:0] alu_mode;
@@ -32,6 +32,7 @@ wire [7:0] rj_out;
 wire [7:0] rk_out;
 wire [7:0] ra_out;
 wire [7:0] rb_out;
+wire [7:0] rx_out;
 wire [15:0] tr_out;
 wire [15:0] ac_out;
 wire [15:0] alu_out;
@@ -147,6 +148,13 @@ register rb(
 .data_out(rb_out)
 );
 
+register rx(
+.clk (clk),
+.we (we[16]),
+.data_in(bus_out[15:0]),
+.data_out(rx_out)
+);
+
 register_inc #(.data_width(16)) tr
 (
 .clk (clk),
@@ -193,6 +201,7 @@ bus bus(
 .ra(ra_out),
 .rb(rb_out),
 .rc(rc_out),
+.rx(rx_out),
 .out(bus_out)
 );
 

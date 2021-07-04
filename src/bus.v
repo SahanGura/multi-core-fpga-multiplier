@@ -1,4 +1,4 @@
-module bus(input [3:0] read_en,
+module bus(input [4:0] read_en,
  input [7:0] r,
  input [7:0] dr,
  input [15:0] tr,
@@ -14,6 +14,8 @@ module bus(input [3:0] read_en,
  input [7:0] r3,
  input [7:0] ra,
  input [7:0] rb,
+ input [7:0] rc,
+ input [7:0] rx,
  
  output [15:0] out ) ;
 
@@ -38,6 +40,8 @@ module bus(input [3:0] read_en,
 	 4'd12:busout <= r3;
 	 4'd13:busout <= ra;
 	 4'd14:busout <= rb;
+	 4'd15:busout <= rc;
+	 4'd16:busout <= rx;
 	 default: busout <= 8'd0;
 	 endcase
 	end
