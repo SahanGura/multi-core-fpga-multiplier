@@ -1,9 +1,9 @@
 module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	(input wire clk,
 	input wire we,
-	input wire[(2*DATA_WIDTH-1):0] w_data, 
-	input wire[(ADDR_WIDTH-1):0] w_addr, r_addr,
-	output wire[(DATA_WIDTH-1):0] r_data);
+	input wire[(2*DATA_WIDTH-1):0] w_data1, w_data2, w_data3, w_data4,
+	input wire[(ADDR_WIDTH-1):0] w_addr1, r_addr1, w_addr2, r_addr2, w_addr3, r_addr3, w_addr4, r_addr4,
+	output wire[(DATA_WIDTH-1):0] r_data1, r_data2, r_data3, r_data4);
 
 	//signal declaration
 	reg[DATA_WIDTH-1:0] mem [2**ADDR_WIDTH-1:0]; //2D-array for storage

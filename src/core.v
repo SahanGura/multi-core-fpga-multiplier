@@ -2,6 +2,7 @@ module core
 (input [7:0] dm_in,
 input [7:0] im_in,
 input clk,
+input [4:0] core_id,
 output [15:0] addr_dm, addr_im,
 output dm_wr,
 output im_wr,
@@ -34,7 +35,14 @@ wire [7:0] rb_out;
 wire [15:0] tr_out;
 wire [15:0] ac_out;
 wire [15:0] alu_out;
+wire [7:0] rc_out;
 
+register_c #(.data_width(8)) rc
+(
+.clk (clk),
+.data_in(core_id),
+.data_out(rc_out)
+);
 
 address_reg #(.data_width(16)) ar
 (
@@ -184,6 +192,7 @@ bus bus(
 .r3(r3_out),
 .ra(ra_out),
 .rb(rb_out),
+.rc(rc_out),
 .out(bus_out)
 );
 
