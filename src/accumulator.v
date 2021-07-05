@@ -20,7 +20,7 @@ always @(posedge clk)
 		else if (clr==1)
 			data_out <= 8'd0;
 
-    if (data_out == 0)
+    if (data_out <= 0)
         z <= 1;
     else
         z <= 0;    	
