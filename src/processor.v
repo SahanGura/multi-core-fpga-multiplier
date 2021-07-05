@@ -110,10 +110,10 @@ instr_mem instr_mem1(
 
 always @ (posedge clk)
 begin
-ins1 <= im_out1;
-ins2 <= im_out2;
-ins3 <= im_out3;
-ins4 <= im_out4;
+ins1 <= addr_out_im1;
+ins2 <= addr_out_im2;
+ins3 <= addr_out_im3;
+ins4 <= addr_out_im4;
 end
 
 endmodule 
