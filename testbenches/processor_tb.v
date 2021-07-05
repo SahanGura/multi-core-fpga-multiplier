@@ -11,13 +11,13 @@ module processor_tb();
             #10 clk = 1'b1;
         end
 
-    // always @ (posedge clk)
-	//     if (ins == 8'd28)
-	// 	begin
-	// 	    $display("ENDOP Triggered");
-    //         #100;
-    //         $stop;
-	// 	end
+    always @ (posedge clk)
+	    if (ins == 8'd28)
+		begin
+		    $display("ENDOP Triggered");
+            #100;
+            $stop;
+		end
 
     localparam period = 20; 
 

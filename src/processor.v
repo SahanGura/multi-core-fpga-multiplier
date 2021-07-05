@@ -5,7 +5,7 @@ output reg [7:0] ins
 );
 
 wire [7:0] dm_out1, dm_out2, dm_out3, dm_out4;
-wire [7:0] im_out;
+wire [7:0] im_out1, im_out2, im_out3, im_out4;
 wire [7:0] addr_out_im1, addr_out_im2, addr_out_im3, addr_out_im4, addr_out_dm1, addr_out_dm2, addr_out_dm3, addr_out_dm4;
 wire [15:0] mem_in1, mem_in2, mem_in3, mem_in4;
 wire [3:0] dm_we, im_we;
@@ -17,7 +17,7 @@ reg [7:0] core_id4 = 8'd3;
 
 core core1(
 .dm_in(dm_out1),
-.im_in(im_out),
+.im_in(im_out1),
 .clk(clk),
 .core_id(core_id1),
 .addr_im(addr_out_im1),
@@ -29,7 +29,7 @@ core core1(
 
 core core2(
 .dm_in(dm_out2),
-.im_in(im_out),
+.im_in(im_out2),
 .clk(clk),
 .core_id(core_id2),
 .addr_im(addr_out_im2),
@@ -41,7 +41,7 @@ core core2(
 
 core core3(
 .dm_in(dm_out3),
-.im_in(im_out),
+.im_in(im_out3),
 .clk(clk),
 .core_id(core_id3),
 .addr_im(addr_out_im3),
@@ -53,7 +53,7 @@ core core3(
 
 core core4(
 .dm_in(dm_out4),
-.im_in(im_out),
+.im_in(im_out4),
 .clk(clk),
 .core_id(core_id4),
 .addr_im(addr_out_im4),
@@ -87,15 +87,27 @@ data_mem data_mem1(
 instr_mem instr_mem1(
 .clk(clk),
 .we(im_we),
-.w_instr(mem_in1),
-.r_instr(im_out),
-.w_addr(addr_out_im1),
-.r_addr(addr_out_im1)
+.w_instr1(mem_in1),
+.w_instr2(mem_in2),
+.w_instr3(mem_in3),
+.w_instr4(mem_in4),
+.r_instr1(im_out1),
+.r_instr2(im_out2),
+.r_instr3(im_out3),
+.r_instr4(im_out4),
+.w_addr1(addr_out_im1),
+.w_addr2(addr_out_im2),
+.w_addr3(addr_out_im3),
+.w_addr4(addr_out_im4),
+.r_addr1(addr_out_im1),
+.r_addr2(addr_out_im2),
+.r_addr3(addr_out_im3),
+.r_addr4(addr_out_im4)
 );
 
 always @ (posedge clk)
 begin
-ins <= im_out;
+ins <= im_out1;
 end
 
 endmodule 
