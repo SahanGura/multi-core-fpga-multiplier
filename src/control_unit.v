@@ -699,6 +699,32 @@ module control_unit
 		end
 	end
 
+	6'd47:	//JMPZ
+	begin
+	 if (z==1)
+		begin
+		 write_en <= 17'b00000010000000000 ; //dr
+		 inc <= 2'b00;
+		 bus_ld <= 5'd0;//imem
+		 clr <= 6'b000000;
+		 dm_wr <=1'b0;
+		 im_wr <=1'b0;
+		 next_stage <= EXECX ;
+		 end_op <= 1'b0;
+		end
+	 else
+		begin
+		 write_en <= 17'b00000000000000000 ;
+		 inc <= 2'b01; //pc
+		 bus_ld <= 5'd0;//imem
+		 clr <= 6'b000000;
+		 dm_wr <=1'b0;
+		 im_wr <=1'b0;
+		 next_stage <= FETCH1 ;
+		 end_op <= 1'b0;
+		end
+	end
+
 	6'd45: //INTDIVRx
 	begin 
 	 write_en <= 17'b00000000001000000 ; //ac
@@ -807,6 +833,18 @@ begin
 	end
 	
 	6'd27:
+	begin
+	 write_en <= 17'b00000010000000000 ; //dr
+	 inc <= 2'b00;
+	 bus_ld <= 5'd0;//imem
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 next_stage <= EXEC2 ;
+	 end_op <= 1'b0;
+	end
+
+	6'd47:
 	begin
 	 write_en <= 17'b00000010000000000 ; //dr
 	 inc <= 2'b00;
@@ -1051,6 +1089,18 @@ end
 //	end
 	
 	6'd27:	//JPNZ
+	begin
+	 write_en <= 17'b00000100000000000 ; //pc
+	 inc <= 2'b00;
+	 bus_ld <= 5'd3;//dr
+	 clr <= 6'b000000;
+	 dm_wr <=1'b0;
+	 im_wr <=1'b0;
+	 next_stage <= FETCH1 ;
+	 end_op <= 1'b0;
+	end
+
+	6'd47:	//JMPZ
 	begin
 	 write_en <= 17'b00000100000000000 ; //pc
 	 inc <= 2'b00;

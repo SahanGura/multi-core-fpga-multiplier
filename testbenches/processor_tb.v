@@ -15,7 +15,7 @@ module processor_tb();
         end
 
     always @ (posedge clk)
-	    if (ins1 == 8'd104 && ins2 == 8'd104 && ins3 == 8'd104 && ins4 == 8'd104)
+	    if (ins1 == 8'd122 && ins2 == 8'd122 && ins3 == 8'd122 && ins4 == 8'd122)
 		begin
 		    $display("ENDOP Triggered for all cores");
             #100;
