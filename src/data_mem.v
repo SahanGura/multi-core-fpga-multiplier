@@ -16,9 +16,9 @@ module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
     // end
 
 	initial begin
-		mem[0] = 8'd2;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
+		mem[0] = 8'd3;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
 		mem[1] = 8'd3;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
-		mem[2] = 8'd4;	//n
+		mem[2] = 8'd3;	//n
 		mem[3] = 8'd4;	//n
 		mem[4] = 8'd0;	//l
 		mem[5] = 8'd0;	//l
@@ -26,15 +26,15 @@ module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 		mem[7] = 8'd0;	//i
 		mem[8] = 8'd10;	//j
 		mem[9] = 8'd70;	//j
-		mem[10] = 8'd1;	
+		mem[10] = 8'd1;	//val2
 		mem[11] = 8'd2;	
 		mem[12] = 8'd3;
 		mem[13] = 8'd4;
 		mem[14] = 8'd5;
-		mem[15] = 8'd6;	//val1
+		mem[15] = 8'd6;	
 		mem[16] = 8'd1;
 		mem[17] = 8'd2;
-		mem[18] = 8'd3;
+		mem[18] = 8'd3; //val2
 		mem[19] = 8'd4;
 		mem[20] = 8'd5;
 		mem[21] = 8'd6; 

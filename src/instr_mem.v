@@ -1,13 +1,14 @@
 module instr_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	(input clk,
-	input we,
-	input [(2*DATA_WIDTH-1):0] w_instr, 
-	input [(ADDR_WIDTH-1):0] w_addr, r_addr,
-	output [(DATA_WIDTH-1):0] r_instr);
+	input wire [3:0] we,
+	input wire[(2*DATA_WIDTH-1):0] w_instr1, w_instr2, w_instr3, w_instr4,
+	input wire[(ADDR_WIDTH-1):0] w_addr1, r_addr1, w_addr2, r_addr2, w_addr3, r_addr3, w_addr4, r_addr4,
+	output wire[(DATA_WIDTH-1):0] r_instr1, r_instr2, r_instr3, r_instr4);
+
 
 	//signal declaration
 	reg[DATA_WIDTH-1:0] mem [2**ADDR_WIDTH-1:0]; //2D-array for storage
-	reg[DATA_WIDTH-1:0] data_reg; //read output register
+	reg[DATA_WIDTH-1:0] data_reg1, data_reg2, data_reg3, data_reg4;
 
 	// //RAM initialization from an output file
 	// initial
@@ -399,36 +400,50 @@ module instr_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//body
-	//write operation
 	always@(posedge clk)
 		begin
-			if(we)
-				begin 
-				mem[w_addr] <= w_instr[7:0];
-				mem[w_addr+1'b1] <= w_instr[15:8];
-				end
-			else
+			if(we[0])
 				begin
-				data_reg <= mem[r_addr];
+				mem[w_addr1] <= w_instr1[7:0];
+				mem[w_addr1+1'b1] <= w_instr1[15:8];
+				end
+			else if(!we[0])
+				begin
+				data_reg1 <= mem[r_addr1];
+				end
+			if(we[1])
+				begin
+				mem[w_addr2] <= w_instr2[7:0];
+				mem[w_addr2+1'b1] <= w_instr2[15:8];
+				end
+			else if(!we[1])
+				begin
+				data_reg2 <= mem[r_addr2];
+				end
+			if(we[2])
+				begin
+				mem[w_addr3] <= w_instr3[7:0];
+				mem[w_addr3+1'b1] <= w_instr3[15:8];
+				end
+			else if(!we[2])
+				begin
+				data_reg3 <= mem[r_addr3];
+				end
+			if(we[3])
+				begin
+				mem[w_addr4] <= w_instr4[7:0];
+				mem[w_addr4+1'b1] <= w_instr4[15:8];
+				end
+			else if(!we[3])
+				begin
+				data_reg4 <= mem[r_addr4];
 				end
 		end
 		
 		//read operation
-		assign r_instr = data_reg;
+		assign r_instr1 = data_reg1;
+		assign r_instr2 = data_reg2;
+		assign r_instr3 = data_reg3;
+		assign r_instr4 = data_reg4;
+
 endmodule
