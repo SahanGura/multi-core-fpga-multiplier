@@ -2,6 +2,7 @@ module control_unit
 (input [7:0] ir,
  input clk,
  input z,
+ input en,
 
  output reg end_op, output reg [1:0] inc, output reg [3:0] alu_mode, output reg[4:0] bus_ld ,
  output reg [16:0] write_en, output reg [5:0] clr, output reg dm_wr , im_wr , dm_addr = 1'b0);
@@ -48,6 +49,15 @@ module control_unit
 
  FETCH1 :
  begin
+	if (!en)
+		begin
+			next_stage <= IDLE; 
+		end
+	else if (en) 
+		begin
+			next_stage <= FETCH2 ;
+		end
+ 
  write_en <= 17'b00001000000000000 ; //ar
  inc <= 2'b00;
  dm_addr <=1'b0;
@@ -55,7 +65,7 @@ module control_unit
  clr <= 6'b000000;
  dm_wr <=1'b0;
  im_wr <=1'b0;
- next_stage <= FETCH2 ;
+ //  next_stage <= FETCH2 ;
  end_op <= 1'b0;
  end
  
@@ -1255,7 +1265,7 @@ end
  clr <= 6'b000000;
  dm_wr <=1'b0;
  im_wr <=1'b0;
- end_op <= 1'b0; 
+ end_op <= 1'b1; 
  end
  
 default:

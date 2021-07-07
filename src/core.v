@@ -3,11 +3,15 @@ module core
 input [7:0] im_in,
 input clk,
 input [7:0] core_id,
+input en,
 output [15:0] addr_dm, addr_im,
 output dm_wr,
 output im_wr,
-output reg [15:0] to_mem
+output reg [15:0] to_mem,
+output end_op
 );
+
+
 
 wire [16:0] we;
 wire [5:0] clr;
@@ -209,6 +213,7 @@ control_unit cu(
 .ir(ir_out),
 .clk(clk),
 .z(z),
+.en(en),
 .write_en(we),
 .clr(clr),
 .bus_ld(bus_ld),
@@ -216,7 +221,8 @@ control_unit cu(
 .inc(inc),
 .dm_wr(dm_wr),
 .im_wr(im_wr),
-.dm_addr(dm_addr)
+.dm_addr(dm_addr),
+.end_op(end_op)
 );
 
 mux2 mux1 (
@@ -231,6 +237,5 @@ always @ (posedge clk)
 begin
 to_mem <= bus_out;
 end
-
 
 endmodule
