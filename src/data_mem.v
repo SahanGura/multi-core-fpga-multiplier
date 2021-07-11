@@ -9,41 +9,42 @@ module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	reg[DATA_WIDTH-1:0] mem [2**ADDR_WIDTH-1:0]; //2D-array for storage
 	reg[DATA_WIDTH-1:0] data_reg1, data_reg2, data_reg3, data_reg4; //read output register
 
-	//RAM initialization from an output file
-    // initial begin
-    //     $display("Loading rom.");
-    //     $readmemh("../simulation/modelsim/initial_files/data_mem.txt", mem);
-    // end
+//	RAM initialization from an output file
+    initial begin
+        $display("Loading rom.");
+        $readmemh("initial_files/data_mem.txt", mem);
+//		  $readmemh("simulation/modelsim/initial_files/data_mem.txt", mem); //if in quartus
+    end
 
-	initial begin
-		mem[0] = 8'd4;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
-		mem[1] = 8'd2;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
-		mem[2] = 8'd5;	//n
-		mem[3] = 8'd3;	//N
-		mem[4] = 8'd0;	//q
-		mem[5] = 8'd0;	//q
-		mem[6] = 8'd0;	//k
-		mem[7] = 8'd0;	//k
-		mem[8] = 8'd10;	//start
-		mem[9] = 8'd70;	//save
-		mem[10] = 8'd10;	//val1
-		mem[11] = 8'd2;		
-		mem[12] = 8'd3;
-		mem[13] = 8'd4;
-		mem[14] = 8'd5;
-		mem[15] = 8'd6;	
-		mem[16] = 8'd1;
-		mem[17] = 8'd2;
-		mem[18] = 8'd3; //val2
-		mem[19] = 8'd4;
-		mem[20] = 8'd5;
-		mem[21] = 8'd6; 
-		mem[22] = 8'd7;
-		mem[23] = 8'd8;
-		mem[24] = 8'd9;
-		mem[25] = 8'd10;
-		mem[26] = 8'd11;
-		mem[27] = 8'd12;
+	// initial begin
+	// 	mem[0] = 8'd4;	//m			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
+	// 	mem[1] = 8'd2;	//n			15 14 13 12 11 10 9     7 6 5 4 3 2 1 0
+	// 	mem[2] = 8'd5;	//l
+	// 	mem[3] = 8'd1;	//N
+	// 	mem[4] = 8'd0;	//p
+	// 	mem[5] = 8'd0;	//p
+	// 	mem[6] = 8'd0;	//k
+	// 	mem[7] = 8'd0;	//k
+	// 	mem[8] = 8'd10;	//start
+	// 	mem[9] = 8'd70;	//save
+	// 	mem[10] = 8'd10;	//val1
+	// 	mem[11] = 8'd2;		
+	// 	mem[12] = 8'd3;
+	// 	mem[13] = 8'd4;
+	// 	mem[14] = 8'd5;
+	// 	mem[15] = 8'd6;	
+	// 	mem[16] = 8'd1;
+	// 	mem[17] = 8'd2;
+	// 	mem[18] = 8'd3; //val2
+	// 	mem[19] = 8'd4;
+	// 	mem[20] = 8'd5;
+	// 	mem[21] = 8'd6; 
+	// 	mem[22] = 8'd7;
+	// 	mem[23] = 8'd8;
+	// 	mem[24] = 8'd9;
+	// 	mem[25] = 8'd10;
+	// 	mem[26] = 8'd11;
+	// 	mem[27] = 8'd12;
 	// 	mem[27] = 8'd0;
 	// 	mem[28] = 8'd9;
 	// 	mem[29] = 8'd7;
@@ -59,7 +60,7 @@ module data_mem #(parameter DATA_WIDTH = 8, ADDR_WIDTH = 8)
 	// 	mem[39] = 8'd9;
 	// 	mem[40] = 8'd1;
 	// 	mem[41] = 8'd4;
-	end
+//	end
 		
 	//body
 	//write operation
