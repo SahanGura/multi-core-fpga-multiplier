@@ -4,7 +4,7 @@
 module processor_tb();
     realtime capture = 0.0;
     reg clk = 1'b1;
-	reg [2:0] core_sel = 3'd2;
+	reg [2:0] core_sel = 3'd1;
     wire [7:0] ins1;
     wire [7:0] ins2;
     wire [7:0] ins3;
