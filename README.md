@@ -5,7 +5,7 @@ ROP_v2 is a resource optimized multi-core processor for FPGA matrix multiplicati
 This is the second version of the processor with multi-core design (with 4 cores); extending the ROP_V1 processor design for matrix multiplication.
 The cores use a single instruction memory and a data memory. For each core there is a separate input port for the instruction memory to load the instructions and a separate port for the data memory to write and read data from the data memory.
 
-![Processor Architecture Overview](figues/overview.png?raw=true)
+![Processor Architecture Overview](https://github.com/SahanGura/multi-core-fpga-multiplier/blob/main/figures/overview.png)
 
 ## Internal features
 
@@ -16,7 +16,7 @@ Each core consists of
     - 8 bit general purpose registers
     - 16 bit special purpose registers
 
-![Data Flow](figues/data-flow.png?raw=true)
+![Data Flow](https://github.com/SahanGura/multi-core-fpga-multiplier/blob/main/figures/data-flow.png)
 
 ## Specifications
 
@@ -36,7 +36,7 @@ ROP_v1 can be compiled using QuartusPrime software and can be simulated using Mo
 Clone the repository using following commands
 
 ```sh
-git clone https://github.com/SahanGura/multi-core-fpga-multiplier.git
+git clone https://github.com/SahanGura/multi-core-fpga-matrix-multiplyer.git
 ```
 
 Following steps should be proceeded to compile and simulate this processor using QuartusPrime and Modelsim. (Plese note that these softwares can be only run in Windows Operating System. If you are using macOS run windows in a virtual environemnt and install)
